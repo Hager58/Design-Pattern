@@ -9,24 +9,23 @@ namespace Lab1.Observer_DP.Classes
 {
     internal class Football:IBall
     {
-      
-        private readonly List<IObserver> _subscribers;
-
-        public FootBall()
-        {
-            MyPosition = new Position();
-            _subscribers = new List<IObserver>();
-        }
         public List<IObserver> Observers { get; set; }
-        public Position MyPosition {
-            get => MyPosition; 
+        private Position _ballPosition;
+        public Position MyPosition
+        {
+            get => _ballPosition;
             set
             {
-                MyPosition = value;
+                _ballPosition = value;
                 NotifyObservers();
             }
         }
-
+        public Football()
+        {
+            _ballPosition = new Position();
+            Observers = new List<IObserver>();
+        }
+     
         public void AttachObserver(IObserver observer)
         {
             Observers.Add(observer);
@@ -39,9 +38,9 @@ namespace Lab1.Observer_DP.Classes
 
         public void NotifyObservers()
         {
-            foreach (var subscriber in Observers)
+            foreach (var observer in Observers)
             {
-                subscriber.Update(MyPosition);
+                observer.Update(_ballPosition);
             }
         }
     }

@@ -6,19 +6,19 @@ namespace Lab1
     {
         static void Main(string[] args)
         {
-            var matchBall = new Football();
+            var FootballMatch = new Football();
 
-            var player1 = new Player() { PlayerNumber = 10 };
-            var player2 = new Player() { PlayerNumber = 11 };
-            var player3 = new Player() { PlayerNumber = 20 };
+            var player1 = new Player();
+            var player2 = new Player();
+            var player3 = new Player();
             var referee = new Referee();
 
-            matchBall.Subscribe(player1);
-            matchBall.Subscribe(player2);
-            matchBall.Subscribe(player3);
-            matchBall.Subscribe(referee);
+            FootballMatch.AttachObserver(player1);
+            FootballMatch.AttachObserver(player2);
+            FootballMatch.AttachObserver(player3);
+            FootballMatch.AttachObserver(referee);
 
-            matchBall.BallPosition = new Position() { X = 1, Y = 2, Z = 3 };
+            FootballMatch.MyPosition = new Position() { X = 0, Y = 0, Z = 0 };
         }
     }
 }
